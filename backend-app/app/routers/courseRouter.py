@@ -13,6 +13,6 @@ async def course(request: CourseRequest):
     try:
         # Placeholder: Add your course logic here
         response = get_subjects()  # Assuming this function is defined in subjectService.py
-        return {"response": f"Course endpoint received: {response}"}
+        return {"response": response}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
