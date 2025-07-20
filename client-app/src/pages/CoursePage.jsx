@@ -22,7 +22,7 @@ const subjects = location.state?.courseData || {};
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
-      <div style={{ width: 320, borderRight: '1px solid #eee', background: '#fafbfc' }}>
+      <div style={{ width: 320, borderRight: '1px solid #eee'}}>
         <SubjectsTree subjects={subjects} />
       </div>
       <div style={{ flex: 1, padding: '2rem' }}>
