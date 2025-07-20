@@ -1,8 +1,10 @@
 
 
-import React, { useState } from 'react';
 
-function SubjectsTree({ subjects }) {
+import React, { useState } from 'react';
+import { sendSubject } from '../services/SubjectService';
+
+function SubjectsTree({ subjects, setOutput }) {
   const [openCategory, setOpenCategory] = useState(null);
   if (!subjects) return null;
   return (
@@ -66,8 +68,11 @@ function SubjectsTree({ subjects }) {
                         transition: 'background 0.18s',
                       }}
                       onMouseOver={e => (e.currentTarget.style.background = '#e3f2fd')}
-                      onMouseOut={e => (e.currentTarget.style.background = '#ffffffff')}
-                      // onClick={() => alert(`Clicked topic: ${topic}`)} // Uncomment to handle topic click
+                      onMouseOut={e => (e.currentTarget.style.background = '#f5f5f5')}
+                      onClick={async () => {
+                        const result = await sendSubject(topic);
+                        if (setOutput) setOutput(result);
+                      }}
                     >
                       {topic}
                     </li>

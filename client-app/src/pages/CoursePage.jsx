@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom';
 function CoursePage() {
   const [search, setSearch] = useState("");
   const [output, setOutput] = useState("");
-const location = useLocation();
+  const location = useLocation();
   // Example subjects data
 
 const subjects = location.state?.courseData || {};
@@ -23,7 +23,7 @@ const subjects = location.state?.courseData || {};
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       <div style={{ width: 320, borderRight: '1px solid #eee'}}>
-        <SubjectsTree subjects={subjects} />
+        <SubjectsTree subjects={subjects} setOutput={setOutput} />
       </div>
       <div style={{ flex: 1, padding: '2rem' }}>
         <OutputBox output={output} />

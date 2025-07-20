@@ -14,8 +14,8 @@ function OutputBox({ output }) {
       marginRight: 'auto',
       boxShadow: '0 2px 8px rgba(60,64,67,.10)'
     }}>
-      <b>תשובה:</b>
-      <div style={{ marginTop: '0.5rem', whiteSpace: 'pre-line' }}>{output}</div>
+      <b>Output:</b>
+      <div style={{ marginTop: '1rem', wordBreak: 'break-word', color: '#222' }}>{output}</div>
     </div>
   );
 }
