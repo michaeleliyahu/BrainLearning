@@ -1,0 +1,46 @@
+# Node
+node_modules/
+build/
+dist/
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env/
+.venv/
+ENV/
+env/
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# IDE
+.idea/
+*.iml
+
+# Misc
+*.swp
+*.swo
+
+# Coverage
+coverage/
+*.cover
+*.coverage
+
+# Test
+*.test.js
+*.test.ts
+
+# Git
+.git/
