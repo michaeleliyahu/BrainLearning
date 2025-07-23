@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import OutputBox from '../components/OutputBox';
-import { sendCourse } from '../services/CourseService';
+import { getSubjects } from '../services/SubjectService';
 
 
 
@@ -15,7 +15,7 @@ function HomePage() {
 
   const handleSearchSubmit = async () => {
     if (!search) return;
-    const result = await sendCourse(search);
+    const result = await getSubjects(search);
     setOutput(result);
   };
 

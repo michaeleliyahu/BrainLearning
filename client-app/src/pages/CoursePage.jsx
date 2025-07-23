@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import SearchBar from '../components/SearchBar';
 import OutputBox from '../components/OutputBox';
 import SubjectsTree from '../components/SubjectsTree';
-import { sendSubject } from '../services/SubjectService';
+import { getSubjects } from '../services/SubjectService';
 import { useLocation } from 'react-router-dom';
 
 function CoursePage() {
@@ -16,7 +16,7 @@ function CoursePage() {
 const subjects = location.state?.courseData || {};
   const handleSearchSubmit = async () => {
     if (!search) return;
-    const result = await sendSubject(search);
+    const result = await getSubjects(search);
     setOutput(result);
   };
 

@@ -1,8 +1,8 @@
 // src/services/SubjectService.js
 
-export async function sendSubject(subject) {
+export async function getSubjects(subject) {
   try {
-    const res = await fetch('http://localhost:8000/subject', {
+    const res = await fetch('http://localhost:8000/getSubjects', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ sentence: subject })

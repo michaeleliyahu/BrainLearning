@@ -2,7 +2,7 @@
 
 
 import React, { useState } from 'react';
-import { sendSubject } from '../services/SubjectService';
+import { getSubjects } from '../services/SubjectService';
 
 function SubjectsTree({ subjects, setOutput }) {
   const [openCategory, setOpenCategory] = useState(null);
@@ -70,7 +70,7 @@ function SubjectsTree({ subjects, setOutput }) {
                       onMouseOver={e => (e.currentTarget.style.background = '#e3f2fd')}
                       onMouseOut={e => (e.currentTarget.style.background = '#f5f5f5')}
                       onClick={async () => {
-                        const result = await sendSubject(topic);
+                        const result = await getSubjects(topic);
                         if (setOutput) setOutput(result);
                       }}
                     >
