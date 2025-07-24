@@ -1,23 +1,32 @@
-import openai
-import os
+from .llmService import ask_openai
+from .dbService import save_message, get_conversation, create_conversation, get_all_messages
+import uuid
 
-async def get_chat_response(prompt: str) -> str:
-    print(prompt)
-    print("Fetching chat response...")
+async def handle_conversation(user_input, session_id: str | None):
 
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        raise Exception("❌ לא נמצא OpenAI API Key!")
+    if not session_id or await get_conversation(session_id) is None:
+        print("🔄 Creating new session")
+        print()
+        session_id = str(uuid.uuid4())
+        await create_conversation(session_id)
 
-    client = openai.AsyncOpenAI(api_key=api_key)
+    context = await get_all_messages(session_id)
+    context.append({"role": "user", "content": user_input})
 
-    try:
-        response = await client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[{"role": "user", "content": prompt}]
-        )
-        print("✅ Response received.")
-        return response.choices[0].message.content.strip()
-    except Exception as e:
-        print("❌ שגיאה בקריאה ל־OpenAI:", e)
-        raise
+    print("📖 Context for session work")
+    print()
+
+    response = await ask_openai(context)
+
+    print("🤖 Agent response:", response)
+    print()
+
+    await save_message(session_id, "user", user_input)
+    await save_message(session_id, "assistant", response)
+
+    return {"response": response, "session_id": session_id}
+
+
+
+
+
